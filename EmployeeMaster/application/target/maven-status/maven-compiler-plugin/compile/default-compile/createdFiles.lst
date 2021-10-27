@@ -1,0 +1,11 @@
+com\hcl\employeemaster\application\requestDTO\EmployeeMasterRequestDTO.class
+com\hcl\employeemaster\application\responseDTO\EmployeeMasterResponseDTO.class
+com\hcl\employeemaster\application\responseDTO\ResponseDTO.class
+com\hcl\employeemaster\application\responseDTO\EmployeeMasterResponseDTO$LocationDTO.class
+com\hcl\employeemaster\application\responseDTO\EmployeeMasterResponseDTO$DesignationDTO.class
+com\hcl\employeemaster\application\controller\EmployeeMasterMapper.class
+com\hcl\employeemaster\application\responseDTO\EmployeeMasterResponseDTO$EmpAddressDTO.class
+com\hcl\employeemaster\application\controller\EmployeeMasterController.class
+com\hcl\employeemaster\application\responseDTO\ResponseError.class
+com\hcl\employeemaster\application\responseDTO\EmployeeMasterResponseDTO$ReportingManagerDTO.class
+com\hcl\employeemaster\EmployeeMasterApplication.class
