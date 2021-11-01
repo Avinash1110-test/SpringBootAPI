@@ -1,0 +1,87 @@
+CREATE DATABASE `spring_boot_schema` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+CREATE TABLE `designation_master` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `created_by` varchar(45) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `updated_by` varchar(45) NOT NULL,
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code_UNIQUE` (`code`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `emp_address` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `emp_id` bigint unsigned NOT NULL,
+  `address_type` varchar(45) NOT NULL,
+  `address` varchar(500) NOT NULL,
+  `phone_no` varchar(45) NOT NULL,
+  `created_by` varchar(45) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `updated_by` varchar(45) NOT NULL,
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `EMP_ID_idx` (`emp_id`),
+  CONSTRAINT `EMP_MASTER_ID` FOREIGN KEY (`emp_id`) REFERENCES `employee_master` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `location_master` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `created_by` varchar(45) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `updated_by` varchar(45) NOT NULL,
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code_UNIQUE` (`code`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `managers_master` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `created_by` varchar(45) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `updated_by` varchar(45) NOT NULL,
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code_UNIQUE` (`code`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `employee_master` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `emp_code` varchar(8) NOT NULL,
+  `emp_name` varchar(45) NOT NULL,
+  `designation` bigint unsigned NOT NULL,
+  `reporting_manager` bigint unsigned NOT NULL,
+  `location` bigint unsigned NOT NULL,
+  `salary` double NOT NULL,
+  `blood_group` varchar(5) NOT NULL,
+  `band` varchar(2) NOT NULL,
+  `doj` date NOT NULL,
+  `dob` date NOT NULL,
+  `father_name` varchar(45) NOT NULL,
+  `mother_name` varchar(45) NOT NULL,
+  `contact_no` double NOT NULL,
+  `note` varchar(500) DEFAULT NULL,
+  `created_by` varchar(45) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `updated_by` varchar(45) NOT NULL,
+  `updated_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `emp_code_UNIQUE` (`emp_code`),
+  UNIQUE KEY `emp_name_UNIQUE` (`emp_name`),
+  KEY `EMP_DESIGNATION_idx` (`designation`),
+  KEY `EMP_RM_idx` (`reporting_manager`),
+  KEY `EMP_LOCATION_idx` (`location`),
+  CONSTRAINT `EMP_DESIGNATION` FOREIGN KEY (`designation`) REFERENCES `designation_master` (`id`),
+  CONSTRAINT `EMP_LOCATION` FOREIGN KEY (`location`) REFERENCES `location_master` (`id`),
+  CONSTRAINT `EMP_RM` FOREIGN KEY (`reporting_manager`) REFERENCES `managers_master` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
